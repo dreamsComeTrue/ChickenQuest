@@ -5,6 +5,9 @@ var _move_dir_mask : int = 0
 var _move_vec := Vector2.ZERO
 var _last_move_mask := 0
 var _action_eat : bool = false
+var _action_eat_counter : float = 0.0
+
+onready var egg_scene = preload("res://scenes/Egg.tscn")
 
 const MOVE_UP_MASK = 1
 const MOVE_RIGHT_MASK = 1 << 2
@@ -13,6 +16,12 @@ const MOVE_LEFT_MASK = 1 << 4
 
 func _physics_process(delta):
 	if _action_eat:
+		_action_eat_counter += delta
+		
+		if _action_eat_counter >= 0.4:
+			_launch_egg()
+			_action_eat_counter = 0.0
+						
 		if _move_dir_mask > 0:
 			if is_bit_enabled(_move_dir_mask, MOVE_UP_MASK):
 				$AnimatedSprite.play("EatUp")
@@ -42,6 +51,9 @@ func _unhandled_key_input(event):
 	if event.pressed:
 		match event.scancode:
 			KEY_SPACE:
+				if _action_eat == false:
+					_launch_egg()
+
 				_action_eat = true
 			KEY_LEFT, KEY_A:
 				_move_vec.x = -1
@@ -74,6 +86,7 @@ func _unhandled_key_input(event):
 				_last_move_mask = MOVE_LEFT_MASK
 		if event.scancode == KEY_SPACE:
 			_action_eat = false
+			_action_eat_counter = 0.0
 			yield(get_tree().create_timer(0.3), "timeout")
 			
 	if not _action_eat:
@@ -104,3 +117,30 @@ func enable_bit(mask, index):
 
 func disable_bit(mask, index):
 	return mask & ~(1 << index)
+
+func _launch_egg() -> void:
+	var egg = egg_scene.instance()
+	get_parent().add_child(egg)
+	
+	if _move_dir_mask > 0:
+		if is_bit_enabled(_move_dir_mask, MOVE_UP_MASK):
+			egg.global_position = $EggDownSpawnPoint.global_position
+			egg.z_index = 2
+		elif is_bit_enabled(_move_dir_mask, MOVE_RIGHT_MASK):
+			egg.global_position = $EggLeftSpawnPoint.global_position
+		elif is_bit_enabled(_move_dir_mask, MOVE_DOWN_MASK):
+			egg.global_position = $EggUpSpawnPoint.global_position
+		elif is_bit_enabled(_move_dir_mask, MOVE_LEFT_MASK):
+			egg.global_position = $EggRightSpawnPoint.global_position
+	else:
+		if _last_move_mask == MOVE_UP_MASK:
+			egg.global_position = $EggDownSpawnPoint.global_position
+			egg.z_index = 2
+		elif _last_move_mask == MOVE_RIGHT_MASK:
+			egg.global_position = $EggLeftSpawnPoint.global_position
+		elif _last_move_mask == MOVE_DOWN_MASK:
+			egg.global_position = $EggUpSpawnPoint.global_position
+		elif _last_move_mask == MOVE_LEFT_MASK:
+			egg.global_position = $EggRightSpawnPoint.global_position
+				
+	egg.get_node("AnimationPlayer").play("launch")

@@ -25,6 +25,7 @@ config/icon="res://gfx/chicken_logo.png"
 [autoload]
 
 GameState="*res://scripts/GameState.gd"
+Signals="*res://scripts/Signals.gd"
 
 [display]
 
