@@ -1,0 +1,38 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[  ]
+_global_script_class_icons={
+
+}
+
+[application]
+
+config/name="ChickenQuest"
+run/main_scene="res://scenes/Gameplay.tscn"
+boot_splash/image="res://gfx/chicken_logo.png"
+boot_splash/use_filter=false
+boot_splash/bg_color=Color( 0.222168, 0.268188, 0.40625, 1 )
+config/icon="res://gfx/chicken_logo.png"
+
+[autoload]
+
+GameState="*res://scripts/GameState.gd"
+
+[display]
+
+window/size/width=800
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[rendering]
+
+environment/default_clear_color=Color( 0.238876, 0.283349, 0.394531, 1 )
+environment/default_environment="res://default_env.tres"
