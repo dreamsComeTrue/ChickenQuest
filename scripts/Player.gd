@@ -56,16 +56,12 @@ func _unhandled_key_input(event):
 
 				_action_eat = true
 			KEY_LEFT, KEY_A:
-				_move_vec.x = -1
 				_move_dir_mask = enable_bit(_move_dir_mask, MOVE_LEFT_MASK)
 			KEY_RIGHT, KEY_D:
-				_move_vec.x = 1
 				_move_dir_mask = enable_bit(_move_dir_mask, MOVE_RIGHT_MASK)
 			KEY_UP, KEY_W:
-				_move_vec.y = -1
 				_move_dir_mask = enable_bit(_move_dir_mask, MOVE_UP_MASK)
 			KEY_DOWN, KEY_S:
-				_move_vec.y = 1
 				_move_dir_mask = enable_bit(_move_dir_mask, MOVE_DOWN_MASK)
 	else:
 		if (event.scancode == KEY_UP or event.scancode == KEY_W) and is_bit_enabled(_move_dir_mask, MOVE_UP_MASK):
@@ -92,12 +88,16 @@ func _unhandled_key_input(event):
 	if not _action_eat:
 		if is_bit_enabled(_move_dir_mask, MOVE_UP_MASK):
 			$AnimatedSprite.play("MoveUp")
+			_move_vec.y = -1
 		elif is_bit_enabled(_move_dir_mask, MOVE_RIGHT_MASK):
 			$AnimatedSprite.play("MoveRight")
+			_move_vec.x = 1
 		elif is_bit_enabled(_move_dir_mask, MOVE_DOWN_MASK):
 			$AnimatedSprite.play("MoveDown")
+			_move_vec.y = 1
 		elif is_bit_enabled(_move_dir_mask, MOVE_LEFT_MASK):
 			$AnimatedSprite.play("MoveLeft")
+			_move_vec.x = -1
 		else:
 			match _last_move_mask:
 				MOVE_UP_MASK:

@@ -12,10 +12,9 @@ func _ready():
 	_recalc_ai()
 
 func _recalc_ai() -> void:
-	var path = $Navigation2D.get_simple_path($Enemy.global_position, $TileMap/Player.global_position)
-	
 	var enemies : Array = get_tree().get_nodes_in_group("enemy")
 	for enemy in enemies:
+		var path = $Navigation2D.get_simple_path(enemy.global_position, $TileMap/Player.global_position)
 		enemy.path = path
 
 func _process(delta):

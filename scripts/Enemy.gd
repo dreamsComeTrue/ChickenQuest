@@ -1,8 +1,10 @@
 extends KinematicBody2D
+class_name Enemy
 
 var speed = 40
 var path : = PoolVector2Array()
 var enemy_type : int = 0
+var life : int = 100
 
 func _ready():
 	randomize()
@@ -30,3 +32,12 @@ func _process(delta):
 
 	if path.empty():
 		$AnimatedSprite.play(str(enemy_type) + "_Idle")
+
+func damage() -> void:
+	$AnimationPlayer.play("damage")
+
+	life -= 20
+	$LifeBar.rect_size.x = 40.0 * life / 100.0
+
+	if life <= 0:
+		queue_free()
