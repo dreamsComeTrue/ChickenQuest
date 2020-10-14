@@ -1,0 +1,214 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://fonts/RUBBBB__.TTF" type="DynamicFontData" id=1]
+[ext_resource path="res://gfx/head.png" type="Texture" id=2]
+[ext_resource path="res://gfx/grey.png" type="Texture" id=3]
+[ext_resource path="res://gfx/UIpackSheet_transparent.png" type="Texture" id=4]
+[ext_resource path="res://gfx/golden_egg.png" type="Texture" id=5]
+[ext_resource path="res://scripts/GameplayUI.gd" type="Script" id=6]
+[ext_resource path="res://fonts/coders_crux.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+outline_size = 2
+outline_color = Color( 0.00784314, 0.129412, 0.337255, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 4 )
+region = Rect2( 360, 290, 16, 12 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 30
+font_data = ExtResource( 7 )
+
+[node name="GameplayUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.566475
+margin_top = -3.08655
+margin_right = 0.566467
+margin_bottom = -3.08655
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -210.0
+margin_top = 25.0
+margin_right = 210.0
+margin_bottom = 75.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.87451, 1, 0, 1 )
+text = "Chicken Quest"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0665
+margin_top = -70.5865
+margin_right = 186.066
+margin_bottom = -7.58655
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 5.63274
+margin_top = -56.2229
+margin_right = 53.6327
+margin_bottom = -8.2229
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control/TextureRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -21.9154
+margin_top = -26.0
+margin_right = 23.0846
+margin_bottom = 19.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -29.3673
+margin_top = -23.7229
+margin_right = 82.6328
+margin_bottom = -10.7229
+texture = ExtResource( 4 )
+region_rect = Rect2( 55, 397, 14, 14 )
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="CanvasLayer/Control/NinePatchRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+max_value = 1.0
+step = 0.1
+value = 1.0
+texture_progress = SubResource( 2 )
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -29.1225
+margin_top = -3.14801
+margin_right = 82.8775
+margin_bottom = 21.852
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Egg1" type="TextureRect" parent="CanvasLayer/Control/HBoxContainer"]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+
+[node name="Egg2" type="TextureRect" parent="CanvasLayer/Control/HBoxContainer"]
+margin_left = 29.0
+margin_right = 54.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+
+[node name="Egg3" type="TextureRect" parent="CanvasLayer/Control/HBoxContainer"]
+margin_left = 58.0
+margin_right = 83.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+
+[node name="Egg4" type="TextureRect" parent="CanvasLayer/Control/HBoxContainer"]
+margin_left = 87.0
+margin_right = 112.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+
+[node name="DialogFrame" type="NinePatchRect" parent="CanvasLayer"]
+self_modulate = Color( 1, 1, 1, 0.560784 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -140.0
+margin_top = -103.0
+margin_right = 140.0
+margin_bottom = -40.0
+texture = ExtResource( 4 )
+region_rect = Rect2( 109, 397, 14, 14 )
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/DialogFrame"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.0
+margin_top = 6.0
+margin_right = -5.0
+margin_bottom = -5.0
+custom_fonts/normal_font = SubResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[color=#222222]Hello, mate![/color]"
+text = "Hello, mate!"
+__meta__ = {
+"_edit_use_anchors_": false
+}

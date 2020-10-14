@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tinychicken_cooked48x48.png-dbb3aac404ce2c1dc5c3031d1011e635.stex"
+path="res://.import/head.png-9f527221b6069a0d6e8a2a189fdecc23.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gfx/tinychicken_cooked48x48.png"
-dest_files=[ "res://.import/tinychicken_cooked48x48.png-dbb3aac404ce2c1dc5c3031d1011e635.stex" ]
+source_file="res://gfx/head.png"
+dest_files=[ "res://.import/head.png-9f527221b6069a0d6e8a2a189fdecc23.stex" ]
 
 [params]
 

@@ -14,7 +14,7 @@ func _ready():
 func _process(delta):
 	# Calculate the movement distance for this frame
 	var distance_to_walk = speed
-	
+
 	# Move the player along the path until he has run out of movement or the path ends.
 	while distance_to_walk > 0 and path.size() > 0:
 		$AnimatedSprite.play(str(enemy_type) + "_Attack")
@@ -40,4 +40,4 @@ func damage() -> void:
 	$LifeBar.rect_size.x = 40.0 * life / 100.0
 
 	if life <= 0:
-		queue_free()
+		$AnimationPlayer.play("destroy")
